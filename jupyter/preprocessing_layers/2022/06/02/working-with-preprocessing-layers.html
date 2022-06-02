@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tensorflow preprocessing layers | fastpages</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="tensorflow preprocessing layers" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A copy of preprocessing layers in tensorflow." />
+<meta property="og:description" content="A copy of preprocessing layers in tensorflow." />
+<link rel="canonical" href="https://upuil.github.io/myblog/jupyter/preprocessing_layers/2022/06/02/working-with-preprocessing-layers.html" />
+<meta property="og:url" content="https://upuil.github.io/myblog/jupyter/preprocessing_layers/2022/06/02/working-with-preprocessing-layers.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:image" content="https://upuil.github.io/myblog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-02T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://upuil.github.io/myblog/images/chart-preview.png" />
+<meta property="twitter:title" content="tensorflow preprocessing layers" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-02T00:00:00-05:00","datePublished":"2022-06-02T00:00:00-05:00","description":"A copy of preprocessing layers in tensorflow.","headline":"tensorflow preprocessing layers","image":"https://upuil.github.io/myblog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://upuil.github.io/myblog/jupyter/preprocessing_layers/2022/06/02/working-with-preprocessing-layers.html"},"url":"https://upuil.github.io/myblog/jupyter/preprocessing_layers/2022/06/02/working-with-preprocessing-layers.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://upuil.github.io/myblog/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">tensorflow preprocessing layers</h1><p class="page-description">A copy of preprocessing layers in tensorflow.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-02T00:00:00-05:00" itemprop="datePublished">
+        Jun 2, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#preprocessing_layers">preprocessing_layers</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/upuil/myblog/tree/master/_notebooks/2022-06-02-working-with-preprocessing-layers.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/myblog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/upuil/myblog/master?filepath=_notebooks%2F2022-06-02-working-with-preprocessing-layers.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/myblog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/upuil/myblog/blob/master/_notebooks/2022-06-02-working-with-preprocessing-layers.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/myblog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fupuil%2Fmyblog%2Fblob%2Fmaster%2F_notebooks%2F2022-06-02-working-with-preprocessing-layers.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/myblog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#load-some-data">load some data </a></li>
+<li class="toc-entry toc-h2"><a href="#创建一个模型，利用数据增强后的数据训练">创建一个模型，利用数据增强后的数据训练 </a></li>
+<li class="toc-entry toc-h1"><a href="#通过0-1编码字符特征">通过0-1编码字符特征 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#1.1-根据已知词汇表创建查找层">1.1 根据已知词汇表创建查找层 </a></li>
+<li class="toc-entry toc-h2"><a href="#1.2-未知词汇表，根据对输入数据分析建立词汇表">1.2 未知词汇表，根据对输入数据分析建立词汇表 </a></li>
+<li class="toc-entry toc-h2"><a href="#1.3-设置多个未知字符位置">1.3 设置多个未知字符位置 </a></li>
+<li class="toc-entry toc-h2"><a href="#1.4-one-hot-output">1.4 one-hot output </a></li>
+<li class="toc-entry toc-h2"><a href="#1.5-Multi-hot-output">1.5 Multi-hot output </a></li>
+<li class="toc-entry toc-h2"><a href="#1.6-计数-Token-count-output">1.6 计数 Token count output </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-06-02-working-with-preprocessing-layers.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.6</span><span class="p">,</span><span class="mf">1.7</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Normalization</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">normalized_data</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Feature mean: </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span><span class="p">(</span><span class="n">normalized_data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Feature mean: -0.00
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Feature std: </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span><span class="p">(</span><span class="n">normalized_data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Feature std: 1.00
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_augmentation</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">RandomFlip</span><span class="p">(</span><span class="s2">"horizontal"</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">RandomRotation</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">RandomZoom</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="load-some-data">
+<a class="anchor" href="#load-some-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>load some data<a class="anchor-link" href="#load-some-data"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">cifar10</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">input_shape</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Downloading data from https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+170498071/170498071 [==============================] - 82s 0us/step
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">data_augmentation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(32, 32, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(50000, 32, 32, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(50000, 1)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_dataset</span>  <span class="c1">#MapDataset</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;MapDataset element_spec=(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None, 1), dtype=tf.uint8, name=None))&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_dataset</span><span class="o">.</span><span class="n">element_spec</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None),
+ TensorSpec(shape=(None, 1), dtype=tf.uint8, name=None))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="创建一个模型，利用数据增强后的数据训练">
+<a class="anchor" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%88%A9%E7%94%A8%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%AD%E7%BB%83" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建一个模型，利用数据增强后的数据训练<a class="anchor-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%88%A9%E7%94%A8%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%AD%E7%BB%83"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Rescaling</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">ResNet50</span><span class="p">(</span>
+     <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span>
+    <span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">"rmsprop"</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">"sparse_categorical_crossentropy"</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5/5 [==============================] - 18s 86ms/step - loss: 8.8498
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;keras.callbacks.History at 0x7f85fcb370d0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="通过0-1编码字符特征">
+<a class="anchor" href="#%E9%80%9A%E8%BF%870-1%E7%BC%96%E7%A0%81%E5%AD%97%E7%AC%A6%E7%89%B9%E5%BE%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>通过0-1编码字符特征<a class="anchor-link" href="#%E9%80%9A%E8%BF%870-1%E7%BC%96%E7%A0%81%E5%AD%97%E7%AC%A6%E7%89%B9%E5%BE%81"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s2">"a"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"a"</span><span class="p">],[</span><span class="s1">'e'</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[b'a'],
+       [b'b'],
+       [b'c'],
+       [b'b'],
+       [b'c'],
+       [b'a'],
+       [b'e']], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookup</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span><span class="n">output_mode</span><span class="o">=</span><span class="s2">"one_hot"</span><span class="p">)</span>
+<span class="n">lookup</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s2">"a"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"d"</span><span class="p">],[</span><span class="s2">"e"</span><span class="p">],[</span><span class="s2">""</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">encoded_data</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">encoded_data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tf.Tensor(
+[[0. 0. 0. 1. 0.]
+ [0. 0. 1. 0. 0.]
+ [0. 1. 0. 0. 0.]
+ [1. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 1.]
+ [1. 0. 0. 0. 0.]], shape=(6, 5), dtype=float32)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_data_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s2">"a"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"a"</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookup</span><span class="p">(</span><span class="n">test_data_1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(6, 4), dtype=float32, numpy=
+array([[0., 0., 0., 1.],
+       [0., 0., 1., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 0., 1.]], dtype=float32)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_data_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s2">"a"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"b"</span><span class="p">],[</span><span class="s2">"c"</span><span class="p">],[</span><span class="s2">"a"</span><span class="p">],[</span><span class="s2">"d"</span><span class="p">],[</span><span class="s2">"e"</span><span class="p">],[</span><span class="s2">"f"</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookup</span><span class="p">(</span><span class="n">test_data_1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(9, 5), dtype=float32, numpy=
+array([[0., 0., 0., 1., 0.],
+       [0., 0., 1., 0., 0.],
+       [0., 1., 0., 0., 0.],
+       [0., 0., 1., 0., 0.],
+       [0., 1., 0., 0., 0.],
+       [0., 0., 0., 1., 0.],
+       [1., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 1.],
+       [1., 0., 0., 0., 0.]], dtype=float32)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.1-根据已知词汇表创建查找层">
+<a class="anchor" href="#1.1-%E6%A0%B9%E6%8D%AE%E5%B7%B2%E7%9F%A5%E8%AF%8D%E6%B1%87%E8%A1%A8%E5%88%9B%E5%BB%BA%E6%9F%A5%E6%89%BE%E5%B1%82" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 根据已知词汇表创建查找层<a class="anchor-link" href="#1.1-%E6%A0%B9%E6%8D%AE%E5%B7%B2%E7%9F%A5%E8%AF%8D%E6%B1%87%E8%A1%A8%E5%88%9B%E5%BB%BA%E6%9F%A5%E6%89%BE%E5%B1%82"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">],[</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">]])</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span><span class="n">vocabulary</span><span class="o">=</span><span class="n">vocab</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span> <span class="c1"># 根据a的索引位置为1，b的为2，将输入数据编码</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['[UNK]', 'a', 'b', 'c', 'd']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(2, 3), dtype=int64, numpy=
+array([[1, 3, 4],
+       [4, 0, 2]])&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.2-未知词汇表，根据对输入数据分析建立词汇表">
+<a class="anchor" href="#1.2-%E6%9C%AA%E7%9F%A5%E8%AF%8D%E6%B1%87%E8%A1%A8%EF%BC%8C%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BB%BA%E7%AB%8B%E8%AF%8D%E6%B1%87%E8%A1%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 未知词汇表，根据对输入数据分析建立词汇表<a class="anchor-link" href="#1.2-%E6%9C%AA%E7%9F%A5%E8%AF%8D%E6%B1%87%E8%A1%A8%EF%BC%8C%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BB%BA%E7%AB%8B%E8%AF%8D%E6%B1%87%E8%A1%A8"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">],[</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">()</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span> <span class="c1">#排到第一的是未知字符，然后是出现频率最多的，然后是逆序排列</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>WARNING:tensorflow:6 out of the last 6 calls to &lt;function PreprocessingLayer.make_adapt_function.&lt;locals&gt;.adapt_step at 0x7f80790bbc10&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['[UNK]', 'd', 'z', 'c', 'b', 'a']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"c"</span><span class="p">,</span><span class="s2">"d"</span><span class="p">],[</span><span class="s2">"d"</span><span class="p">,</span><span class="s2">"z"</span><span class="p">,</span><span class="s2">"b"</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">()</span> <span class="c1">#默认输出模式为 int, 输入字符根据对应的词汇表中的位置索引转化</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(2, 3), dtype=int64, numpy=
+array([[5, 3, 1],
+       [1, 2, 4]])&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.3-设置多个未知字符位置">
+<a class="anchor" href="#1.3-%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E6%9C%AA%E7%9F%A5%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 设置多个未知字符位置<a class="anchor-link" href="#1.3-%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E6%9C%AA%E7%9F%A5%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">]</span>
+<span class="n">data</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">],[</span><span class="s1">'m'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">]])</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span><span class="n">vocabulary</span><span class="o">=</span><span class="n">vocab</span><span class="p">,</span> <span class="n">num_oov_indices</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['[UNK]', '[UNK]', 'a', 'b', 'c', 'd']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(2, 3), dtype=int64, numpy=
+array([[2, 4, 5],
+       [0, 1, 3]])&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.4-one-hot-output">
+<a class="anchor" href="#1.4-one-hot-output" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.4 one-hot output<a class="anchor-link" href="#1.4-one-hot-output"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">])</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span>
+    <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s2">"one_hot"</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span> <span class="c1"># 第一个位置代表位置字符</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['[UNK]', 'a', 'b', 'c', 'd']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(5, 5), dtype=float32, numpy=
+array([[0., 1., 0., 0., 0.],
+       [0., 0., 1., 0., 0.],
+       [0., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 1.],
+       [1., 0., 0., 0., 0.]], dtype=float32)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.5-Multi-hot-output">
+<a class="anchor" href="#1.5-Multi-hot-output" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.5 Multi-hot output<a class="anchor-link" href="#1.5-Multi-hot-output"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">],[</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">]])</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span>
+        <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s1">'multi_hot'</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['[UNK]', 'a', 'b', 'c', 'd']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(2, 5), dtype=float32, numpy=
+array([[0., 1., 0., 1., 1.],
+       [1., 0., 1., 0., 1.]], dtype=float32)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.6-计数-Token-count-output">
+<a class="anchor" href="#1.6-%E8%AE%A1%E6%95%B0-Token-count-output" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.6 计数 Token count output<a class="anchor-link" href="#1.6-%E8%AE%A1%E6%95%B0-Token-count-output"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">],[</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">]])</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span>
+        <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s1">'count'</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['[UNK]', 'a', 'b', 'c', 'd']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;tf.Tensor: shape=(2, 5), dtype=float32, numpy=
+array([[0., 1., 0., 1., 2.],
+       [2., 0., 1., 0., 1.]], dtype=float32)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="upuil/myblog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/myblog/jupyter/preprocessing_layers/2022/06/02/working-with-preprocessing-layers.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" target="_blank" title="fastai"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" target="_blank" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
