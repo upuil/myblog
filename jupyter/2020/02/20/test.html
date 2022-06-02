@@ -8,8 +8,8 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Fastpages Notebook Blog Post" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="A tutorial of fastpages for Jupyter notebooks." />
-<meta property="og:description" content="A tutorial of fastpages for Jupyter notebooks." />
+<meta name="description" content="fastpages使用Jupyter notebooks的教程." />
+<meta property="og:description" content="fastpages使用Jupyter notebooks的教程." />
 <link rel="canonical" href="https://upuil.github.io/myblog/jupyter/2020/02/20/test.html" />
 <meta property="og:url" content="https://upuil.github.io/myblog/jupyter/2020/02/20/test.html" />
 <meta property="og:site_name" content="fastpages" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="https://upuil.github.io/myblog/images/chart-preview.png" />
 <meta property="twitter:title" content="Fastpages Notebook Blog Post" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-02-20T00:00:00-06:00","datePublished":"2020-02-20T00:00:00-06:00","description":"A tutorial of fastpages for Jupyter notebooks.","headline":"Fastpages Notebook Blog Post","image":"https://upuil.github.io/myblog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://upuil.github.io/myblog/jupyter/2020/02/20/test.html"},"url":"https://upuil.github.io/myblog/jupyter/2020/02/20/test.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-02-20T00:00:00-06:00","datePublished":"2020-02-20T00:00:00-06:00","description":"fastpages使用Jupyter notebooks的教程.","headline":"Fastpages Notebook Blog Post","image":"https://upuil.github.io/myblog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://upuil.github.io/myblog/jupyter/2020/02/20/test.html"},"url":"https://upuil.github.io/myblog/jupyter/2020/02/20/test.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://upuil.github.io/myblog/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -80,14 +80,14 @@ window.onload = wrap_img;
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Fastpages Notebook Blog Post</h1>
-<p class="page-description">A tutorial of fastpages for Jupyter notebooks.</p>
+<p class="page-description">fastpages使用Jupyter notebooks的教程.</p>
 <p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-02-20T00:00:00-06:00" itemprop="datePublished">
         Feb 20, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      3 min read
     
 </span></p>
 
@@ -133,7 +133,7 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
 <li class="toc-entry toc-h1">
-<a href="#About">About </a>
+<a href="#%E5%85%B3%E4%BA%8E">关于 </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Front-Matter">Front Matter </a></li>
 <li class="toc-entry toc-h2"><a href="#Markdown-Shortcuts">Markdown Shortcuts </a></li>
@@ -145,26 +145,25 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Example-3:-More-Tooltips">Example 3: More Tooltips </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Data-Tables">Data Tables </a></li>
+<li class="toc-entry toc-h2"><a href="#%E8%A1%A8">表 </a></li>
 <li class="toc-entry toc-h2">
-<a href="#Images">Images </a>
+<a href="#%E5%9B%BE%E7%89%87">图片 </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Local-Images">Local Images </a></li>
-<li class="toc-entry toc-h3"><a href="#Remote-Images">Remote Images </a></li>
-<li class="toc-entry toc-h3"><a href="#Animated-Gifs">Animated Gifs </a></li>
-<li class="toc-entry toc-h3"><a href="#Captions">Captions </a></li>
+<li class="toc-entry toc-h3"><a href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87">本地图片 </a></li>
+<li class="toc-entry toc-h3"><a href="#%E5%8A%A8%E7%94%BB-gifs">动画 gifs </a></li>
+<li class="toc-entry toc-h3"><a href="#%E6%A0%87%E9%A2%98">标题 </a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-entry toc-h1">
-<a href="#Other-Elements">Other Elements </a>
+<a href="#%E5%85%B6%E5%AE%83%E5%85%83%E7%B4%A0">其它元素 </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#GitHub-Flavored-Emojis">GitHub Flavored Emojis </a></li>
 <li class="toc-entry toc-h2"><a href="#Tweetcards">Tweetcards </a></li>
 <li class="toc-entry toc-h2"><a href="#Youtube-Videos">Youtube Videos </a></li>
 <li class="toc-entry toc-h2"><a href="#Boxes-/-Callouts">Boxes / Callouts </a></li>
-<li class="toc-entry toc-h2"><a href="#Footnotes">Footnotes </a></li>
+<li class="toc-entry toc-h2"><a href="#%E8%84%9A%E6%B3%A8">脚注 </a></li>
 </ul>
 </li>
 </ul>
@@ -180,11 +179,11 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="About">
-<a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
+<h1 id="关于">
+<a class="anchor" href="#%E5%85%B3%E4%BA%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于<a class="anchor-link" href="#%E5%85%B3%E4%BA%8E"> </a>
 </h1>
-<p>This notebook is a demonstration of some of capabilities of <a href="https://github.com/fastai/fastpages">fastpages</a> with notebooks.</p>
-<p>With <code>fastpages</code> you can save your jupyter notebooks into the <code>_notebooks</code> folder at the root of your repository, and they will be automatically be converted to Jekyll compliant blog posts!</p>
+<p>介绍<a href="https://github.com/fastai/fastpages">fastpages</a> 写jupyter notebook的一些功能。</p>
+<p>有了<code>fastpages</code>，你可以把你的jupyter笔记本保存到你的资源库根部的<code>_notebooks</code>文件夹中，它们将被自动转换为符合Jekyll标准的博客文章!</p>
 
 </div>
 </div>
@@ -195,7 +194,8 @@ window.onload = wrap_img;
 <h2 id="Front-Matter">
 <a class="anchor" href="#Front-Matter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Front Matter<a class="anchor-link" href="#Front-Matter"> </a>
 </h2>
-<p>The first cell in your Jupyter Notebook or markdown blog post contains front matter. Front matter is metadata that can turn on/off options in your Notebook. It is formatted like this:</p>
+<p>在你的Jupyter笔记本或markdown博客文章中的第一个单元格包含font matter。
+font matter是元数据，可以在你的notebook中打开/关闭选项。它的格式是这样的。</p>
 
 <pre><code># "My Title"
 &gt; "Awesome summary"
@@ -206,11 +206,11 @@ window.onload = wrap_img;
 - author: Hamel Husain &amp; Jeremy Howard
 - categories: [fastpages, jupyter]</code></pre>
 <ul>
-<li>Setting <code>toc: true</code> will automatically generate a table of contents</li>
-<li>Setting <code>badges: true</code> will automatically include GitHub and Google Colab links to your notebook.</li>
-<li>Setting <code>comments: true</code> will enable commenting on your blog post, powered by <a href="https://github.com/utterance/utterances">utterances</a>.</li>
+<li>设置 <code>toc: true</code> 会自动生成目录。</li>
+<li>设置 <code>badges: true</code> 会自动包括 GitHub 和 Google Colab 的链接在你的notebook中.</li>
+<li>设置 <code>comments: true</code> 借助与 <a href="https://github.com/utterance/utterances">utterances</a>可以在对你的内容添加评论.</li>
 </ul>
-<p>The title and description need to be enclosed in double quotes only if they include special characters such as a colon. More details and options for front matter can be viewed on the <a href="https://github.com/fastai/fastpages#front-matter-related-options">front matter section</a> of the README.</p>
+<p>标题和描述只有在包括特殊字符（如冒号）时才需要用双引号括起来。更多关于前言的细节和选项可以在以下网站的readme查看 <a href="https://github.com/fastai/fastpages#front-matter-related-options">front matter section</a>.</p>
 
 </div>
 </div>
@@ -227,8 +227,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A <code>#hide</code> comment at the top of any code cell will hide <strong>both the input and output</strong> of that cell in your blog post.</p>
-<p>A <code>#hide_input</code> comment at the top of any code cell will <strong>only hide the input</strong> of that cell.</p>
+<p><code>#hide</code> 在任何代码单元顶部的注释将在你的博客文章中隐藏<strong>该单元的输入和输出</strong>。</p>
+<p><code>#hide_input</code> 在任何代码单元顶部的注释将<strong>只隐藏该单元的输入</strong>。</p>
 
 </div>
 </div>
@@ -257,7 +257,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>put a <code>#collapse-hide</code> flag at the top of any cell if you want to <strong>hide</strong> that cell by default, but give the reader the option to show it:</p>
+<p>如果你想在默认情况下<strong>隐藏该单元格</strong>, 但又想让读者选择显示该单元格，可以在任何单元格的顶部放一个<code>#collapse-hide</code>标志。</p>
 
 </div>
 </div>
@@ -287,7 +287,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>put a <code>#collapse-show</code> flag at the top of any cell if you want to <strong>show</strong> that cell by default, but give the reader the option to hide it:</p>
+<p>如果你想在默认情况下<strong>显示该单元格</strong>，但又想让读者选择隐藏它，可以在任何单元格的顶部放一个<code>#collapse-show</code>标志。</p>
 
 </div>
 </div>
@@ -320,7 +320,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>place a <code>#collapse-output</code> flag at the top of any cell if you want to put the output under a collapsable element that is closed by default, but give the reader the option to open it:</p>
+<p>如果你想把输出放在一个默认关闭的可折叠元素下，在任何单元格的顶部放置一个<code>#collapse-output</code>标志，但让读者选择打开它。</p>
 
 </div>
 </div>
@@ -711,10 +711,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data-Tables">
-<a class="anchor" href="#Data-Tables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Tables<a class="anchor-link" href="#Data-Tables"> </a>
+<h2 id="表">
+<a class="anchor" href="#%E8%A1%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>表<a class="anchor-link" href="#%E8%A1%A8"> </a>
 </h2>
-<p>You can display tables per the usual way in your blog:</p>
+<p>表格可以用常用的方式直接显示</p>
 
 </div>
 </div>
@@ -835,13 +835,13 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Images">
-<a class="anchor" href="#Images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Images<a class="anchor-link" href="#Images"> </a>
+<h2 id="图片">
+<a class="anchor" href="#%E5%9B%BE%E7%89%87" aria-hidden="true"><span class="octicon octicon-link"></span></a>图片<a class="anchor-link" href="#%E5%9B%BE%E7%89%87"> </a>
 </h2>
-<h3 id="Local-Images">
-<a class="anchor" href="#Local-Images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Local Images<a class="anchor-link" href="#Local-Images"> </a>
+<h3 id="本地图片">
+<a class="anchor" href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87" aria-hidden="true"><span class="octicon octicon-link"></span></a>本地图片<a class="anchor-link" href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87"> </a>
 </h3>
-<p>You can reference local images and they will be copied and rendered on your blog automatically.  You can include these with the following markdown syntax:</p>
+<p>你可以引用本地图片，它们将被复制并自动呈现在你的博客上。 你可以用下面的markdown语法包括这些。</p>
 <p><code>![](my_icons/fastai_logo.png)</code></p>
 
 </div>
@@ -855,18 +855,25 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Remote-Images">
-<a class="anchor" href="#Remote-Images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remote Images<a class="anchor-link" href="#Remote-Images"> </a>
-</h3>
-<p>Remote images can be included with the following markdown syntax:</p>
-<p><code>![](https://image.flaticon.com/icons/svg/36/36686.svg)</code></p>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">用如下的方式可以显示远程图片</span>
+
+<span class="err">`</span><span class="o">![](</span>https://image.flaticon.com/icons/svg/36/36686.svg<span class="o">)</span><span class="sb">`</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
-</div>
-</div>
+    
+
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -878,11 +885,11 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Animated-Gifs">
-<a class="anchor" href="#Animated-Gifs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Animated Gifs<a class="anchor-link" href="#Animated-Gifs"> </a>
+<h3 id="动画-gifs">
+<a class="anchor" href="#%E5%8A%A8%E7%94%BB-gifs" aria-hidden="true"><span class="octicon octicon-link"></span></a>动画 gifs<a class="anchor-link" href="#%E5%8A%A8%E7%94%BB-gifs"> </a>
 </h3>
-<p>Animated Gifs work, too!</p>
-<p><code>![](https://upload.wikimedia.org/wikipedia/commons/7/71/ChessPawnSpecialMoves.gif)</code></p>
+<p>动画和图片是一样的方式
+<code>![](https://upload.wikimedia.org/wikipedia/commons/7/71/ChessPawnSpecialMoves.gif)</code></p>
 
 </div>
 </div>
@@ -898,10 +905,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Captions">
-<a class="anchor" href="#Captions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Captions<a class="anchor-link" href="#Captions"> </a>
+<h3 id="标题">
+<a class="anchor" href="#%E6%A0%87%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>标题<a class="anchor-link" href="#%E6%A0%87%E9%A2%98"> </a>
 </h3>
-<p>You can include captions with markdown images like this:</p>
+<p>你可以这样在图片上添加标题</p>
 
 <pre><code>![](https://www.fast.ai/images/fastai_paper/show_batch.png "Credit: https://www.fast.ai/2020/02/13/fastai-A-Layered-API-for-Deep-Learning/")</code></pre>
 <p><img src="https://www.fast.ai/images/fastai_paper/show_batch.png" alt="" title="Credit: https://www.fast.ai/2020/02/13/fastai-A-Layered-API-for-Deep-Learning/"></p>
@@ -912,8 +919,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Other-Elements">
-<a class="anchor" href="#Other-Elements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other Elements<a class="anchor-link" href="#Other-Elements"> </a>
+<h1 id="其它元素">
+<a class="anchor" href="#%E5%85%B6%E5%AE%83%E5%85%83%E7%B4%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>其它元素<a class="anchor-link" href="#%E5%85%B6%E5%AE%83%E5%85%83%E7%B4%A0"> </a>
 </h1>
 </div>
 </div>
@@ -1012,10 +1019,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Footnotes">
-<a class="anchor" href="#Footnotes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Footnotes<a class="anchor-link" href="#Footnotes"> </a>
+<h2 id="脚注">
+<a class="anchor" href="#%E8%84%9A%E6%B3%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>脚注<a class="anchor-link" href="#%E8%84%9A%E6%B3%A8"> </a>
 </h2>
-<p>You can have footnotes in notebooks, however the syntax is different compared to markdown documents. <a href="https://github.com/fastai/fastpages/blob/master/_fastpages_docs/NOTEBOOK_FOOTNOTES.md">This guide provides more detail about this syntax</a>, which looks like this:</p>
+<p>你可以在笔记本中设置脚注，但是语法与markdown文档不同。. <a href="https://github.com/fastai/fastpages/blob/master/_fastpages_docs/NOTEBOOK_FOOTNOTES.md">This guide provides more detail about this syntax</a>, which looks like this:</p>
 
 <pre><code>For example, here is a footnote {% fn 1 %}.
 And another {% fn 2 %}
